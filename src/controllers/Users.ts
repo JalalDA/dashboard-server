@@ -2,7 +2,6 @@ import Users from "../models/UserModel";
 
 import { Request, Response } from "express";
 
-
 export const getAllUsers = async (req: Request , res:Response)=>{
     try {
        const result =  await Users.findAll({

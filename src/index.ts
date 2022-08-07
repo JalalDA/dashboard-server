@@ -6,6 +6,7 @@ import router from "./routes";
 import passport from "passport";
 require("./strategies/google");
 import session from "express-session";
+import cloudinaryConfig from "./config/cloudinary";
 
 const App = express();
 const PORT = process.env.PORT;
@@ -21,6 +22,7 @@ const start = async () => {
         secret: `${process.env.GOOGLE_CLIENT_SECRET}`,
       })
     );
+    App.use(cloudinaryConfig)
     App.use(express.json())
     App.use(express.urlencoded({extended : true}))
     App.use(router);
