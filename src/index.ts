@@ -7,6 +7,8 @@ import passport from "passport";
 require("./strategies/google");
 import session from "express-session";
 import cloudinaryConfig from "./config/cloudinary";
+import cors from 'cors'
+
 
 const App = express();
 const PORT = process.env.PORT;
@@ -22,6 +24,9 @@ const start = async () => {
         secret: `${process.env.GOOGLE_CLIENT_SECRET}`,
       })
     );
+    App.use(cors({
+      origin : ['http://localhost:3000']
+    }))
     App.use(cloudinaryConfig)
     App.use(express.json())
     App.use(express.urlencoded({extended : true}))
