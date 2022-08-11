@@ -8,12 +8,14 @@ require("./strategies/google");
 import session from "express-session";
 import cloudinaryConfig from "./config/cloudinary";
 import cors from 'cors'
-
-
+import { client } from "./config/redis";
 const App = express();
 const PORT = process.env.PORT;
 const start = async () => {
   try {
+    client.on(`error`, err=>console.log(err))
+    await client.connect()
+    console.log(`Redis connected`);
     await db.authenticate();
     console.log(`DB Connected . . .`);
     App.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

@@ -5,10 +5,8 @@ import { Request, Response } from "express";
 export const getAllUsers = async (req: Request , res:Response)=>{
     try {
        const result =  await Users.findAll({
-        attributes : ['id','display_name', 'email', 'phone', 'photo', 'birthday', 'delivery_adress', 'status']
+        attributes : ['id','display_name', 'email', 'phone', 'photo', 'birthday', 'status']
        })
-       console.log(result);
-       
        res.status(200).json({
         msg : "Show all users",
         data : result
